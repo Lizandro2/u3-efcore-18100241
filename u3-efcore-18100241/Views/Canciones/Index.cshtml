@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Cancione>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listado de personajes</h1>
+<p>
+    <a class="btn btn-primary" asp-action="NuevaCancion">Agregar Cancion</a>
+</p>
+<p>
+    <a class="btn btn-primary" asp-action="AgregarArtistas">Agrega 5 Artistas</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Id de la Cancion
+            </th>
+            <th>
+               Nombre de la Cancion
+            </th>
+            <th>
+                Id del Artista
+            </th>
+            <th>
+               Nombre del Artista
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var cancion in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => cancion.IdCancion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => cancion.NombreCancion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => cancion.IdArtista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => cancion.IdArtistaNavigation.Nombre)
+            </td>
+             <td>
+                <a asp-action="EditarCancion" asp-route-id="@cancion.IdCancion">Editar</a> |
+                <a asp-action="ElminarCancion" asp-route-id="@cancion.IdCancion">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
